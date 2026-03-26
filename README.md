@@ -40,6 +40,7 @@ Add to your `~/.openclaw/openclaw.json`:
         "config": {
           "provider": "twilio",
           "fromNumber": "+1234567890",
+          "ownerNumbers": ["+1234567890"],
           "twilio": {
             "accountSid": "ACxxxxxxxx",
             "authToken": "xxxxxxxx"
@@ -91,6 +92,20 @@ Or via the tool directly:
   "goal": "Confirm the appointment for tomorrow at 2pm"
 }
 ```
+
+`calleeType` (optional) controls trust mode:
+- `"auto"` (default): treat numbers listed in `ownerNumbers` as owner calls, others as external.
+- `"owner"`: force trusted owner mode (callee can steer conversation goals).
+- `"external"`: force untrusted information-collection mode.
+
+
+## Security Hardening for Untrusted Callees
+
+If your use case is high-risk (e.g., collecting info from someone who may try to manipulate the call agent), use a constrained interview design instead of free-form persona chat.
+
+See: [`docs/safe-phone-agent-spec.md`](docs/safe-phone-agent-spec.md)
+
+Key idea: treat the callee as an untrusted input source and return only structured JSON results to OpenClaw.
 
 ## Requirements
 

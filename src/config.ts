@@ -145,6 +145,9 @@ export const VoiceCallConfigSchema = z
     /** Default phone number to call (E.164) */
     toNumber: E164Schema.optional(),
 
+    /** Trusted owner phone numbers (E.164). Calls to these numbers can run in owner-control mode. */
+    ownerNumbers: z.array(E164Schema).default([]),
+
     /** Maximum call duration in seconds */
     maxDurationSeconds: z.number().int().positive().default(300),
 

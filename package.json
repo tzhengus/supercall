@@ -30,7 +30,8 @@
     "openclaw.plugin.json",
     "SKILL.md",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "docs"
   ],
   "dependencies": {
     "@sinclair/typebox": "^0.34.0",
